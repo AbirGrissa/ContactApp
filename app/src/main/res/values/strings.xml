@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MyCallerApp</string>
+    <string name="titre1">Authentification</string>
+    <string name="titre2">Acceuil</string>
+    <string name="img1">Add</string>
+    <string name="img2">list</string>
+</resources>
