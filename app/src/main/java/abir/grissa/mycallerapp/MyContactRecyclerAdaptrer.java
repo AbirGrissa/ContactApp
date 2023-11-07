@@ -67,10 +67,14 @@ public class MyContactRecyclerAdaptrer extends RecyclerView.Adapter<MyContactRec
                 public void onClick(View view) {
                     //data.remove(getAdapterPosition());//indice de l'element selectionner
                     //notifyDataSetChanged();
-                    MainActivity.cm.supprimer(tvnum_contact.getText().toString());
-                    data=MainActivity.cm.showAll();
-                    notifyDataSetChanged();
-
+                    int p=getAdapterPosition();
+                    if (p != RecyclerView.NO_POSITION) {
+                        MainActivity.cm.supprimer(tvnum_contact.getText().toString());
+                        //data.remove(p); // Remove the item from the data list.
+                        Acceuil.data=MainActivity.cm.showAll();
+                        data=MainActivity.cm.showAll();
+                        notifyDataSetChanged();
+                    }
                 }
             });
             call.setOnClickListener(new View.OnClickListener() {
