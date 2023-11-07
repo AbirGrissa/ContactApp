@@ -26,7 +26,6 @@ public class MyContactRecyclerAdaptrer extends RecyclerView.Adapter<MyContactRec
     public MyContactRecyclerAdaptrer(Context con, ArrayList<Contact> data) {
         this.con = con;
         this.data = data;
-        Log.i("","hhhhhhhhhhhhh"+data.get(5).num);
     }
 
     @NonNull
@@ -68,14 +67,18 @@ public class MyContactRecyclerAdaptrer extends RecyclerView.Adapter<MyContactRec
                 public void onClick(View view) {
                     //data.remove(getAdapterPosition());//indice de l'element selectionner
                     //notifyDataSetChanged();
+                    MainActivity.cm.supprimer(tvnum_contact.getText().toString());
+                    data=MainActivity.cm.showAll();
+                    notifyDataSetChanged();
+
                 }
             });
             call.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int indice=getAdapterPosition();
+                    //int indice=getAdapterPosition();
                     Intent i=new Intent(Intent.ACTION_DIAL);
-                    i.setData(Uri.parse("tel"+data.get(indice).num));
+                    i.setData(Uri.parse("tel:"+tvnum_contact.getText().toString()));
                     con.startActivity(i);
                 }
             });
@@ -89,9 +92,9 @@ public class MyContactRecyclerAdaptrer extends RecyclerView.Adapter<MyContactRec
                     View v_d;
                     LayoutInflater inf= LayoutInflater.from(con);
                     v_d = inf.inflate(R.layout.view_dialogue,null);
-                    String nom=data.get(indice).nom;
-                    String prenom=data.get(indice).prenom;
-                    String tel=data.get(indice).num;
+                    String nom=tvnom_contact.getText().toString();
+                    String prenom=tvprenom_contact.getText().toString();
+                    String tel=tvnum_contact.getText().toString();
 
                     nomD=v_d.findViewById(R.id.et_nomD);
                     nomD.setText(nom);
@@ -106,7 +109,8 @@ public class MyContactRecyclerAdaptrer extends RecyclerView.Adapter<MyContactRec
                         @Override
                         public void onClick(View view) {
                             Contact c= new Contact(nomD.getText().toString(),prenomD.getText().toString(),telD.getText().toString());
-                            Acceuil.data.set(indice,c);
+                            MainActivity.cm.modifier(c);
+                            data=MainActivity.cm.showAll();
                             notifyDataSetChanged();
                         }
                     });

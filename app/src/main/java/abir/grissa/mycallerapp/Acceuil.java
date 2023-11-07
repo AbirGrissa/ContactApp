@@ -38,7 +38,7 @@ public class Acceuil extends AppCompatActivity {
         btnaff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                data=MainActivity.cm.showAll();
+
                 Intent i=new Intent(Acceuil.this,Affiche.class);
                 startActivity(i);
             }

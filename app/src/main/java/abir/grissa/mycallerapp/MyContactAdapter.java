@@ -24,7 +24,7 @@ public class MyContactAdapter extends BaseAdapter {
     public int getCount() {
         //return nb des view a crée
 
-        return Acceuil.data.size();
+        return MainActivity.cm.showAll().size();
     }
 
     @Override

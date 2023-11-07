@@ -46,10 +46,37 @@ public class ContactManager {
 
         return x;
     }
-    public void supprimer(){
-
+    public ArrayList<Contact> find(String s){
+        ArrayList <Contact> x =new ArrayList<Contact>();
+        Cursor c=db.query(ContactHelper.contact_table,
+                new String[]{ContactHelper.col_num,ContactHelper.col_nom,ContactHelper.col_prenom},
+                null,
+                null,null,null,null);
+        c.moveToFirst();
+        while (!c.isAfterLast()){
+            String i1=c.getString(0);
+            //Log.i("","nom"+c.getString(0)+"prenom"+c.getString(1)+"tel"+c.getString(2));
+            String i2=c.getString(1);
+            String i3=c.getString(2);
+            if(i2.contains(s)||i3.contains(s)){
+                x.add(new Contact(i1,i2,i3));
+            }
+            c.moveToNext();
+        }
+        return x;
     }
-    public void modifier(){
+
+    public void supprimer(String num){
+        db.delete(ContactHelper.contact_table,ContactHelper.col_num+" =?", new String[]{num});
+    }
+    public void modifier(Contact c){
+        ContentValues values = new ContentValues();
+        values.put(ContactHelper.col_nom, c.nom);
+        values.put(ContactHelper.col_prenom, c.prenom);
+        db.update(ContactHelper.contact_table,
+                values,
+                ContactHelper.col_num+" =?",
+                new String[]{c.num});
 
     }
     public void fermer(){

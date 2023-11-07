@@ -23,13 +23,28 @@
         android:text="Recherhe"
         android:textSize="22sp" />
 
-    <EditText
-        android:id="@+id/editTextText"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Tapez ici pour la recherche" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etRechAff"
+            android:layout_width="121dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Tapez ici " />
+
+        <Button
+            android:id="@+id/btnRech_aff"
+            style="@style/buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50px"
+            android:layout_weight="1"
+            android:text="Recherche" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_affiche"
